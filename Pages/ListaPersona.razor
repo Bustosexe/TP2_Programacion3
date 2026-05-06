@@ -1,0 +1,58 @@
+﻿@page "/lista-personas"
+@using TP2_Programacion_Exequiel.Models
+
+<div class="container mt-4">
+    <h2 class="mb-4">Lista de Personas</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Perfil</th>
+                    <th>ID</th>
+                    <th>Nombre Completo</th>
+                    <th>Email</th>
+                    <th>Domicilio</th>
+                    <th>Fecha de Nacimiento</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var persona in personas)
+                {
+                    <tr>
+                        <td>
+                            <img src="@persona.RutaImagen" alt="Avatar de @persona.NombreCompleto" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;" />
+                        </td>
+                        <td>@persona.Id</td>
+                        <td>@persona.NombreCompleto</td>
+                        <td>@persona.Email</td>
+                        <td>@persona.Domicilio</td>
+                        <td>@persona.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    private List<Persona> personas = new();
+
+    protected override void OnInitialized()
+    {
+        // Inicialización de la lista con 10 instancias
+        personas = new List<Persona>
+        {
+            new Persona { Id = 1, NombreCompleto = "Exequiel Bustos", Email = "exequiel@ites.edu", Domicilio = "Santa Rosa, La Pampa", FechaNacimiento = new DateTime(2000, 5, 14), RutaImagen = "/images/perfil.png" },
+            new Persona { Id = 2, NombreCompleto = "Francisco Bascal", Email = "fbascal@ites.edu", Domicilio = "Centro, Santa Rosa", FechaNacimiento = new DateTime(2001, 8, 22), RutaImagen = "/images/perfil.png" },
+            new Persona { Id = 3, NombreCompleto = "Lucia Manzano", Email = "lucia.m@ites.edu", Domicilio = "Av. San Martin 123", FechaNacimiento = new DateTime(1999, 11, 30), RutaImagen = "/images/perfil.png" },
+            new Persona { Id = 4, NombreCompleto = "Marcelo Gallardo", Email = "dt@riverplate.com", Domicilio = "Av. Figueroa Alcorta 7597", FechaNacimiento = new DateTime(1976, 1, 18), RutaImagen = "/images/perfil.png" },
+            new Persona { Id = 5, NombreCompleto = "Enzo Francescoli", Email = "principe@riverplate.com", Domicilio = "El Monumental", FechaNacimiento = new DateTime(1961, 11, 12), RutaImagen = "/images/perfil.png" },
+            new Persona { Id = 6, NombreCompleto = "Lucas Martinez", Email = "lucasm@hardware.com", Domicilio = "Gabinete Gamemax Infinity Plus 9", FechaNacimiento = new DateTime(1998, 3, 15), RutaImagen = "/images/perfil.png" },
+            new Persona { Id = 7, NombreCompleto = "Ana Gomez", Email = "agomez@arduino.cc", Domicilio = "Calle ESP32", FechaNacimiento = new DateTime(1995, 7, 8), RutaImagen = "/images/perfil.png" },
+            new Persona { Id = 8, NombreCompleto = "Matias Rojas", Email = "mrojas@data.com", Domicilio = "Barrio Los Hornos", FechaNacimiento = new DateTime(2002, 2, 25), RutaImagen = "/images/perfil.png" },
+            new Persona { Id = 9, NombreCompleto = "Sofia Fernandez", Email = "sofif@mail.com", Domicilio = "Toay, La Pampa", FechaNacimiento = new DateTime(2003, 9, 11), RutaImagen = "/images/perfil.png" },
+            new Persona { Id = 10, NombreCompleto = "Julian Alvarez", Email = "arana@riverplate.com", Domicilio = "Manchester", FechaNacimiento = new DateTime(2000, 1, 31), RutaImagen = "/images/perfil.png" }
+        };
+    }
+}

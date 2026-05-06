@@ -1,0 +1,64 @@
+﻿@page "/login"
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">Iniciar Sesión</h3>
+
+                    <!-- Campo de Usuario -->
+                    <div class="mb-3">
+                        <label for="usuario" class="form-label">Usuario</label>
+                        <input type="text" id="usuario" class="form-control" @bind="usuarioInput" placeholder="Ingrese su usuario" />
+                    </div>
+
+                    <!-- Campo de Contraseña -->
+                    <div class="mb-3">
+                        <label for="contrasena" class="form-label">Contraseña</label>
+                        <input type="password" id="contrasena" class="form-control" @bind="contrasenaInput" placeholder="Ingrese su contraseña" />
+                    </div>
+
+                    <!-- Botón Ingresar -->
+                    <div class="d-grid gap-2 mb-3">
+                        <button class="btn btn-primary" @onclick="VerificarCredenciales">Ingresar</button>
+                    </div>
+
+                    <!-- Mensaje de Feedback -->
+                    @if (!string.IsNullOrEmpty(mensajeAlerta))
+                    {
+                        <div class="alert @claseAlerta text-center" role="alert">
+                            @mensajeAlerta
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    // Variables para almacenar lo que escribe el usuario
+    private string usuarioInput = string.Empty;
+    private string contrasenaInput = string.Empty;
+    
+    // Variables para manejar el mensaje de feedback
+    private string mensajeAlerta = string.Empty;
+    private string claseAlerta = string.Empty;
+
+    // Método que se ejecuta al hacer clic en "Ingresar"
+    private void VerificarCredenciales()
+    {
+        // Validamos la condición solicitada
+        if (usuarioInput == "alumno" && contrasenaInput == "1234")
+        {
+            mensajeAlerta = "¡Acceso concedido! Bienvenido al sistema.";
+            claseAlerta = "alert-success"; // Color verde de Bootstrap
+        }
+        else
+        {
+            mensajeAlerta = "Error: Usuario o contraseña incorrectos.";
+            claseAlerta = "alert-danger"; // Color rojo de Bootstrap
+        }
+    }
+}
